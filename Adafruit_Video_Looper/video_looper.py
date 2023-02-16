@@ -303,6 +303,8 @@ class VideoLooper:
         for i in range(self._wait_time):
             now = datetime.now()
             time_str = now.strftime(self._datetime_display_format.split(',')[0])
+            day = int(now.strftime('%d'))
+            suffix = get_day_suffix(day)
             date_str = now.strftime(self._datetime_display_format.split(',')[1])
 
             timeLabel = self._render_text(time_str, self._big_font)
