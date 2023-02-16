@@ -307,8 +307,8 @@ class VideoLooper:
             l1w, l1h = timeLabel.get_size()
             l2w, l2h = dateLabel.get_size()
             self._screen.fill(self._bgcolor)
-            self._screen.blit(timeLabel, (round(sw / 2 - l1w / 2), round(sh / 2 - l1h / 2 - 100)))
-            self._screen.blit(dateLabel, (round(sw / 2 - l2w / 2), round(sh / 2 + l1h + 300)))
+            self._screen.blit(timeLabel, (round(sw / 2 - l1w / 2), round(sh / 2 - l1h / 2 - l2h / 2 - 50)))
+            self._screen.blit(dateLabel, (round(sw / 2 - l2w / 2), round(sh / 2 + l2h / 2 + l1h / 2 + 50)))
             pygame.display.update()
             time.sleep(1)
 
