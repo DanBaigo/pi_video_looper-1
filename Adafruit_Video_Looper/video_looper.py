@@ -322,7 +322,7 @@ class VideoLooper:
             # Format the time and date strings
             time_format, date_format = self._datetime_display_format.split(',')
             time_str = now.strftime(time_format)
-            date_str = now.strftime(date_format).replace("{suffix}", suffix)
+            date_str = now.strftime(self._datetime_display_format.replace('%d{SUFFIX}', f'%d{suffix}').split(',')[1])
 
             # Render the time and date labels
             timeLabel = self._render_text(time_str, self._big_font)
