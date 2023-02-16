@@ -315,8 +315,11 @@ class VideoLooper:
             time_str = now.strftime(self._datetime_display_format.split(',')[0])
             day = int(now.strftime('%d'))
             suffix = get_day_suffix(day)
-            date_str = now.strftime(self._datetime_display_format.split(',')[1])
+            date_str = now.strftime(self._datetime_display_format)
 
+            # Replace the "{day}" placeholder with "{day}{suffix}"
+            date_str = date_str.replace("{day}", f"{day}{suffix}")
+            
             timeLabel = self._render_text(time_str, self._big_font)
             dateLabel = self._render_text(date_str, pygame.font.Font(None, 96))  # 96 Adjusts Lower Line Font Size
 
