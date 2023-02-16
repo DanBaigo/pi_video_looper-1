@@ -321,6 +321,7 @@ class VideoLooper:
         self._screen.blit(timeLabel, (time_x, time_y))
         self._screen.blit(dateLabel, (date_x, date_y))
         pygame.display.update()
+        time.sleep(1)
 
     def _idle_message(self):
         """Print idle message from file reader."""
