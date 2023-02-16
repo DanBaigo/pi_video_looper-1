@@ -300,48 +300,29 @@ class VideoLooper:
 
     def _display_datetime(self):
         sw, sh = self._screen.get_size()
+        for i in range(self._wait_time):
+            now = datetime.now()
+            time_str = now.strftime(self._datetime_display_format.split(',')[0])
+            date_str = now.strftime(self._datetime_display_format.split(',')[1])
 
-        # Save the current time
-        current_time = datetime.now()
+            timeLabel = self._render_text(time_str, self._big_font)
+            dateLabel = self._render_text(date_str, self._small_font)
 
-        # Keep track of how much time has elapsed
-        elapsed_time = 0
+            l1w, l1h = timeLabel.get_size()
+            l2w, l2h = dateLabel.get_size()
 
-        while True:
-            # Calculate how much time has elapsed since the last update
-            delta = datetime.now() - current_time
-            elapsed_time += delta.total_seconds()
-            current_time = datetime.now()
+            # Position the time and date labels
+            time_x = sw // 2 - l1w // 2
+            time_y = sh // 2 - (l1h + l2h) // 2
+            date_x = sw // 2 - l2w // 2
+            date_y = time_y + l1h + 20
 
-            # If one second has passed, update the time display
-            if elapsed_time >= 1:
-                elapsed_time = 0
-                time_str = current_time.strftime(self._datetime_display_format.split(',')[0])
-                date_str = current_time.strftime(self._datetime_display_format.split(',')[1])
-
-                timeLabel = self._render_text(time_str, self._big_font)
-                dateLabel = self._render_text(date_str, self._small_font)
-
-                l1w, l1h = timeLabel.get_size()
-                l2w, l2h = dateLabel.get_size()
-
-                # Position the time and date labels
-                time_x = sw // 2 - l1w // 2
-                time_y = sh // 2 - (l1h + l2h) // 2
-                date_x = sw // 2 - l2w // 2
-                date_y = time_y + l1h + 20
-
-                # Draw the time and date labels to the screen
-                self._screen.fill(self._bgcolor)
-                self._screen.blit(timeLabel, (time_x, time_y))
-                self._screen.blit(dateLabel, (date_x, date_y))
-                pygame.display.update()
-
-            # If 10 seconds have passed, break out of the loop
-            if elapsed_time >= 10:
-                break
-
-            time.sleep(0.1)  # Wait for 0.1 seconds to avoid excessive CPU usage
+            # Draw the time and date labels to the screen
+            self._screen.fill(self._bgcolor)
+            self._screen.blit(timeLabel, (time_x, time_y))
+            self._screen.blit(dateLabel, (date_x, date_y))
+            pygame.display.update()
+            time.sleep(1)
 
     def _idle_message(self):
         """Print idle message from file reader."""
