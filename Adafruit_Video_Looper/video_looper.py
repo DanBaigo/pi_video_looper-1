@@ -300,48 +300,30 @@ class VideoLooper:
 
     def _display_datetime(self):
         sw, sh = self._screen.get_size()
-        now = datetime.now()
-        time_str = now.strftime(self._datetime_display_format.split(',')[0])
-        date_str = now.strftime(self._datetime_display_format.split(',')[1])
+        while True:
+            now = datetime.now()
+            time_str = now.strftime(self._datetime_display_format.split(',')[0])
+            date_str = now.strftime(self._datetime_display_format.split(',')[1])
 
-        timeLabel = self._render_text(time_str, self._big_font)
-        dateLabel = self._render_text(date_str, self._small_font)
+            timeLabel = self._render_text(time_str, self._big_font)
+            dateLabel = self._render_text(date_str, self._small_font)
 
-        l1w, l1h = timeLabel.get_size()
-        l2w, l2h = dateLabel.get_size()
+            l1w, l1h = timeLabel.get_size()
+            l2w, l2h = dateLabel.get_size()
 
-        # Position the time and date labels
-        time_x = sw // 2 - l1w // 2
-        time_y = sh // 2 - (l1h + l2h) // 2
-        date_x = sw // 2 - l2w // 2
-        date_y = time_y + l1h + 20
+            # Position the time and date labels
+            time_x = sw // 2 - l1w // 2
+            time_y = sh // 2 - (l1h + l2h) // 2
+            date_x = sw // 2 - l2w // 2
+            date_y = time_y + l1h + 20
 
-        # Draw the time and date labels to the screen
-        self._screen.fill(self._bgcolor)
-        self._screen.blit(timeLabel, (time_x, time_y))
-        self._screen.blit(dateLabel, (date_x, date_y))
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
-        pygame.display.update()
-        time.sleep(1)
+            # Draw the time and date labels to the screen
+            self._screen.fill(self._bgcolor)
+            self._screen.blit(timeLabel, (time_x, time_y))
+            self._screen.blit(dateLabel, (date_x, date_y))
+            pygame.display.update()
+
+            time.sleep(1)
 
     def _idle_message(self):
         """Print idle message from file reader."""
