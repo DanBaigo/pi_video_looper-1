@@ -306,7 +306,7 @@ class VideoLooper:
             date_str = now.strftime(self._datetime_display_format.split(',')[1])
 
             timeLabel = self._render_text(time_str, self._big_font)
-            dateLabel = self._render_text(date_str, self._small_font)
+            dateLabel = self._render_text(date_str, pygame.font.Font(None, 48))  # use a 48-point font
 
             l1w, l1h = timeLabel.get_size()
             l2w, l2h = dateLabel.get_size()
