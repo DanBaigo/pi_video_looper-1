@@ -312,9 +312,9 @@ class VideoLooper:
 
         # Position the time and date labels
         time_x = sw // 2 - l1w // 2
-        time_y = sh // 4 - l1h // 2
+        time_y = sh // 2 - (l1h + l2h) // 2
         date_x = sw // 2 - l2w // 2
-        date_y = time_y + l1h + 40
+        date_y = time_y + l1h + 20
 
         # Draw the time and date labels to the screen
         self._screen.fill(self._bgcolor)
