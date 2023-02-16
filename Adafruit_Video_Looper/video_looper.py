@@ -324,6 +324,17 @@ class VideoLooper:
             pygame.display.update()
             time.sleep(1)
 
+    def get_day_suffix(day):
+        if day in [1, 21, 31]:
+            suffix = "st"
+        elif day in [2, 22]:
+            suffix = "nd"
+        elif day in [3, 23]:
+            suffix = "rd"
+        else:
+            suffix = "th"
+        return suffix
+
     def _idle_message(self):
         """Print idle message from file reader."""
         # Print message to console.
