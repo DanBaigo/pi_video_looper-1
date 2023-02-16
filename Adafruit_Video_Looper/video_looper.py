@@ -299,6 +299,16 @@ class VideoLooper:
             time.sleep(1)
 
     def _display_datetime(self):
+        def get_day_suffix(day):
+            if day in [1, 21, 31]:
+                suffix = "st"
+            elif day in [2, 22]:
+                suffix = "nd"
+            elif day in [3, 23]:
+                suffix = "rd"
+            else:
+                suffix = "th"
+            return suffix
         sw, sh = self._screen.get_size()
         for i in range(self._wait_time):
             now = datetime.now()
@@ -325,17 +335,6 @@ class VideoLooper:
             self._screen.blit(dateLabel, (date_x, date_y))
             pygame.display.update()
             time.sleep(1)
-
-    def get_day_suffix(day):
-        if day in [1, 21, 31]:
-            suffix = "st"
-        elif day in [2, 22]:
-            suffix = "nd"
-        elif day in [3, 23]:
-            suffix = "rd"
-        else:
-            suffix = "th"
-        return suffix
 
     def _idle_message(self):
         """Print idle message from file reader."""
