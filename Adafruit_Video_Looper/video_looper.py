@@ -321,7 +321,7 @@ class VideoLooper:
                 suffix = "th"
             return suffix
 
-         for i in range(self._wait_time):
+        for i in range(self._wait_time):
             now = datetime.now()
 
             # Get the day suffix
