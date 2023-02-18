@@ -13,6 +13,7 @@ import time
 import pygame
 import threading
 import pygame.mixer
+import random
 from datetime import datetime
 
 from .alsa_config import parse_hw_device
@@ -302,11 +303,13 @@ class VideoLooper:
     def _display_datetime(self):
         # Load and play the sound
         pygame.mixer.init()
-        sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
+       # sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
+        sound_files = ['/home/pi/Music/timesound1.wav', '/home/pi/Music/timesound2.wav']
 
         sw, sh = self._screen.get_size()
 
         # Play the sound at the start of the time display
+        sound = pygame.mixer.Sound(random.choice(sound_files))
         sound.play()
 
         # This handles the array and decides on the correct suffix
