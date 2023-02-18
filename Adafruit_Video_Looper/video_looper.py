@@ -312,6 +312,10 @@ class VideoLooper:
                 suffix = "th"
             return suffix
 
+            # Load and play the sound
+            sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
+            sound.play()
+
         sw, sh = self._screen.get_size()
 
         for i in range(self._wait_time):
@@ -329,10 +333,6 @@ class VideoLooper:
             # Render the time and date labels
             timeLabel = self._render_text(time_str, self._big_font)
             dateLabel = self._render_text(date_str, pygame.font.Font(None, 96))
-
-            # Load and play the sound
-            sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
-            sound.play()
 
             # Calculate the label positions
             l1w, l1h = timeLabel.get_size()
