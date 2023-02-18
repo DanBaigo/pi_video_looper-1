@@ -314,7 +314,6 @@ class VideoLooper:
 
             # Load and play the sound
             sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
-            sound.play()
 
         sw, sh = self._screen.get_size()
 
@@ -349,6 +348,9 @@ class VideoLooper:
             self._screen.blit(dateLabel, (date_x, date_y))
             pygame.display.update()
 
+            # Play the sound when the time is displayed
+            if i == self._wait_time - 1:
+                sound.play()
             time.sleep(1)
 
     def _idle_message(self):
