@@ -359,7 +359,8 @@ class VideoLooper:
 
             # Stop the sound
             sound.stop()
-            pygame.mixer.quit()
+
+        pygame.mixer.quit()
 
 
     def _idle_message(self):
