@@ -12,6 +12,7 @@ import signal
 import time
 import pygame
 import threading
+import pygame.mixer
 from datetime import datetime
 
 from .alsa_config import parse_hw_device
@@ -328,6 +329,10 @@ class VideoLooper:
             # Render the time and date labels
             timeLabel = self._render_text(time_str, self._big_font)
             dateLabel = self._render_text(date_str, pygame.font.Font(None, 96))
+
+            # Load and play the sound
+            sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
+            sound.play()
 
             # Calculate the label positions
             l1w, l1h = timeLabel.get_size()
