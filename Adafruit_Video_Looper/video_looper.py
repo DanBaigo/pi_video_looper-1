@@ -303,7 +303,6 @@ class VideoLooper:
         # Load and play the sound
         pygame.mixer.init()
         sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
-        sound_played = False  # Flag to keep track of whether the sound has already been played
 
         sw, sh = self._screen.get_size()
 
@@ -352,11 +351,6 @@ class VideoLooper:
             self._screen.blit(timeLabel, (time_x, time_y))
             self._screen.blit(dateLabel, (date_x, date_y))
             pygame.display.update()
-
-            # Play the sound when the time is displayed
-            if i == self._wait_time - 1:
-                sound.play()
-                sound_played = True
 
             time.sleep(1)
 
