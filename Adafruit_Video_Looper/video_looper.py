@@ -357,6 +357,11 @@ class VideoLooper:
                 sound.play()
             time.sleep(1)
 
+            # Stop the sound
+            sound.stop()
+            pygame.mixer.quit()
+
+
     def _idle_message(self):
         """Print idle message from file reader."""
         # Print message to console.
