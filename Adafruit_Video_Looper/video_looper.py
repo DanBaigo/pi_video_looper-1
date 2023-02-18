@@ -68,6 +68,8 @@ class VideoLooper:
         # Get timedisplay settings
         self._datetime_display = self._config.getboolean('video_looper', 'datetime_display')
         self._datetime_display_format = self._config.get('video_looper', 'datetime_display_format', raw=True)
+        # Get list of sound files from video looper ini
+        self._config.get('Sound', 'sound_files')
         # Parse string of 3 comma separated values like "255, 255, 255" into
         # list of ints for colors.
         self._bgcolor = list(map(int, self._config.get('video_looper', 'bgcolor')
