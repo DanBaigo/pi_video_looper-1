@@ -324,7 +324,7 @@ class VideoLooper:
         for i in range(self._wait_time):
             now = datetime.now()
 
-            # Get the day suffix
+            ## Get the day suffix
             day = int(now.strftime('%d'))
             suffix = get_day_suffix(day)
 
