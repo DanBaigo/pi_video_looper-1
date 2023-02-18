@@ -68,8 +68,6 @@ class VideoLooper:
         # Get timedisplay settings
         self._datetime_display = self._config.getboolean('video_looper', 'datetime_display')
         self._datetime_display_format = self._config.get('video_looper', 'datetime_display_format', raw=True)
-        # Get list of sound files from video looper ini
-        self._config.get('Sound', 'sound_files')
         # Parse string of 3 comma separated values like "255, 255, 255" into
         # list of ints for colors.
         self._bgcolor = list(map(int, self._config.get('video_looper', 'bgcolor')
@@ -305,12 +303,13 @@ class VideoLooper:
     def _display_datetime(self):
         # Load and play the sound
         pygame.mixer.init()
-        sound_files = self._config.get('Sound', 'sound_files').split(',')
-        sound_path = random.choice(sound_files)
-        sound = pygame.mixer.Sound(sound_path)
-        sound.play()
+        sound_files = ['/home/pi/Music/timesound1.wav', '/home/pi/Music/timesound2.wav']
 
         sw, sh = self._screen.get_size()
+
+        # Play the sound at the start of the time display
+        sound = pygame.mixer.Sound(random.choice(sound_files))
+        sound.play()
 
         # This handles the array and decides on the correct suffix
         def get_day_suffix(day):
