@@ -300,6 +300,15 @@ class VideoLooper:
             time.sleep(1)
 
     def _display_datetime(self):
+        # Load and play the sound
+        pygame.mixer.init()
+        sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
+
+        sw, sh = self._screen.get_size()
+
+        # Play the sound at the start of the time display
+        sound.play()
+
         # This handles the array and decides on the correct suffix
         def get_day_suffix(day):
             if day in [1, 21, 31]:
@@ -312,12 +321,7 @@ class VideoLooper:
                 suffix = "th"
             return suffix
 
-            # Load and play the sound
-            sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
-
-        sw, sh = self._screen.get_size()
-
-        for i in range(self._wait_time):
+         for i in range(self._wait_time):
             now = datetime.now()
 
             # Get the day suffix
