@@ -303,14 +303,12 @@ class VideoLooper:
     def _display_datetime(self):
         # Load and play the sound
         pygame.mixer.init()
-       # sound = pygame.mixer.Sound('/home/pi/Music/timesound.wav')
-        sound_files = ['/home/pi/Music/timesound1.wav', '/home/pi/Music/timesound2.wav']
+        sound_files = self._config.get('Sound', 'sound_files').split(',')
+        sound_path = random.choice(sound_files)
+        sound = pygame.mixer.Sound(sound_path)
+        sound.play()
 
         sw, sh = self._screen.get_size()
-
-        # Play the sound at the start of the time display
-        sound = pygame.mixer.Sound(random.choice(sound_files))
-        sound.play()
 
         # This handles the array and decides on the correct suffix
         def get_day_suffix(day):
@@ -356,9 +354,6 @@ class VideoLooper:
             pygame.display.update()
 
             time.sleep(1)
-
-
-
 
     def _idle_message(self):
         """Print idle message from file reader."""
